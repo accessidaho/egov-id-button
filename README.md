@@ -40,5 +40,5 @@ Custom property | Description | Default
 ----------------|-------------|----------
 `--id-primary-border` | Default border color | #255dab
 `--id-primary-color` | Default background color | #2968c0
-`--id-primary-border-hover` | Default background color | #1a4179
-`--id-primary-color-hover` | Default background color | #205196
+`--id-primary-border-hover` | Default border color on hover | #1a4179
+`--id-primary-color-hover` | Default background color on hover | #205196
