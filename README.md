@@ -28,7 +28,7 @@ Add the element and set properties:
   links="[{'title': 'Link', 'url': 'Url'}]"
   indent
   outline
-  >Alert Message
+  >Button Message
 </id-button>
 ```
 
