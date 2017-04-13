@@ -121,6 +121,16 @@
         padding-left: 0;
       }
 
+      :host([block]) button {
+        width: 100%;
+      }
+
+      @media (min-width: 768px) {
+        :host([block]) button {
+          width: auto;
+        }
+      }
+
       :host([outline]) button {
         color: var(--outline-color);
         background-image: none;
@@ -177,6 +187,14 @@
            * Outlines the button instead of filling it.
            */
           outline: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true
+          },
+          /**
+           * Makes button full width of mobile
+           */
+          block: {
             type: Boolean,
             value: false,
             reflectToAttribute: true
