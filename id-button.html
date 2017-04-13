@@ -121,14 +121,14 @@
         padding-left: 0;
       }
 
-      button[outline] {
+      :host([outline]) button {
         color: var(--outline-color);
         background-image: none;
         background-color: transparent;
         border-color: var(--outline-color);
       }
 
-      button[outline]:hover {
+      :host([outline]) button:hover {
         background-color: var(--outline-color);
         color: #fff;
       }
@@ -180,6 +180,10 @@
             type: Boolean,
             value: false,
             reflectToAttribute: true
+          },
+          eventName: {
+            type: String,
+            value: 'button-click'
           }
         };
       }
@@ -200,8 +204,8 @@
             '--border-color': '#558B2F',
             '--background-color': '#558B2F',
             '--outline-color': '#558B2F',
-            '--border-color-hover': '#419641',
-            '--background-color-hover': '#449d44',
+            '--border-color-hover': '#33691E',
+            '--background-color-hover': '#33691E',
             '--focus-color': 'rgba(92,184,92,.5)'
           },
           warning: {
@@ -217,7 +221,7 @@
             '--background-color': '#c62828',
             '--outline-color': '#c62828',
             '--border-color-hover': '#c12e2a',
-            '--background-color-hover': '#c9302c',
+            '--background-color-hover': '#B71C1C',
             '--focus-color': 'rgba(217,83,79,.5)'
           }
         }
@@ -228,16 +232,7 @@
        * @return null
        */
       _click() {
-        this.dispatchEvent(new CustomEvent('button-click', {detail: {name: this.name}}));
-      }
-
-      /**
-       * Adds the outline class when the attribute is set.
-       * @param  {boolean} outline Outline property
-       * @return string
-       */
-      _buttonClass(outline) {
-        return (outline) ? 'outline': '';
+        this.dispatchEvent(new CustomEvent(this.eventName, {bubbles: true, composed: true, detail: {name: this.eventName}}));
       }
 
       ready() {
