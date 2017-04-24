@@ -72,6 +72,7 @@
         -ms-user-select: none;
         user-select: none;
         border: 1px solid transparent;
+        cursor: pointer;
         padding: .5rem 1rem;
         font-size: .9rem;
         border-radius: .25rem;
@@ -143,6 +144,18 @@
         color: #fff;
       }
 
+      :host([btn-group="left"]) button {
+        margin-right: -1px;
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+      }
+
+      :host([btn-group="right"]) button {
+        margin-left: -1px;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+      }
+
     </style>
     <button on-click="_click" type$="[[type]]" name$="[[name]]"><slot></slot></button>
     <div id="additional-links">
@@ -202,6 +215,10 @@
           eventName: {
             type: String,
             value: 'button-click'
+          },
+          btnGroup: {
+            type: String,
+            reflectToAttribute: true
           }
         };
       }
