@@ -133,6 +133,18 @@
         }
       }
 
+      :host([link]) button {
+        color: var(--id-link-color, #0027c1);
+        background-image: none;
+        background-color: transparent;
+        border: 0 !important;
+        padding: 0;
+      }
+
+      :host([link]) button:hover {
+        color: var(--id-link-hover-color, #001875);
+      }
+
       :host([outline]) button {
         color: var(--outline-color);
         background-image: none;
@@ -206,6 +218,14 @@
             reflectToAttribute: true
           },
           /**
+           * Gets rid of button styling
+           */
+          link: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true
+          },
+          /**
            * Makes button full width of mobile
            */
           block: {
@@ -259,6 +279,14 @@
             '--border-color-hover': '#c12e2a',
             '--background-color-hover': '#B71C1C',
             '--focus-color': 'rgba(217,83,79,.5)'
+          },
+          link: {
+            '--border-color': 'transparent',
+            '--background-color': 'transparent',
+            '--outline-color': 'transparent',
+            '--border-color-hover': 'transparent',
+            '--background-color-hover': 'transparent',
+            '--focus-color': 'transparent'
           }
         }
       }
