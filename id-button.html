@@ -169,8 +169,72 @@
         border-top-left-radius: 0;
       }
 
+      :host([loading]) button {
+        opacity: .65;
+        cursor: not-allowed;
+      }
+
+      :host([loading]) button:hover {
+        background-color: var(--background-color);
+        border-color: var(--border-color);
+      }
+
+      :host([loading]) button:focus {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+
+      .loader,
+      .loader:after {
+        border-radius: 50%;
+        width: 1rem;
+        height: 1rem;
+        position: relative;
+        top: -1px;
+      }
+      .loader {
+        margin: 0px auto;
+        font-size: 10px;
+        position: relative;
+        text-indent: -9999em;
+        border-top: .2rem solid rgba(255, 255, 255, 0.2);
+        border-right: .2rem solid rgba(255, 255, 255, 0.2);
+        border-bottom: .2rem solid rgba(255, 255, 255, 0.2);
+        border-left: .2rem solid #ffffff;
+        -webkit-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-animation: load8 1.1s infinite linear;
+        animation: load8 1.1s infinite linear;
+        display: inline-block;
+        margin-right: .5rem;
+      }
+      @-webkit-keyframes load8 {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes load8 {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+
     </style>
-    <button on-click="_click" type$="[[type]]" name$="[[name]]"><slot></slot></button>
+    <button on-click="_click" type$="[[type]]" name$="[[name]]">
+      <template is="dom-if" if="{{loading}}"><div class="loader">Loading...</div></template>
+      <slot></slot>
+    </button>
     <div id="additional-links">
       <template is="dom-repeat" items="[[links]]">
         <a href$="[[item.url]]">[[item.title]]</a>
@@ -239,6 +303,11 @@
           },
           btnGroup: {
             type: String,
+            reflectToAttribute: true
+          },
+          loading: {
+            type: Boolean,
+            default: false,
             reflectToAttribute: true
           }
         };
