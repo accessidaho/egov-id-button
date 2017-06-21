@@ -1,11 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
 
-<!--
-`id-button` Button element with Idaho styling.
-
-@demo demo/index.html
--->
-
 <dom-module id="id-button">
   <template>
     <style>
@@ -243,6 +237,14 @@
   </template>
 
   <script>
+    /**
+     * `id-button`
+     * Idaho styled button element.
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
     class IdButton extends Polymer.Element {
       static get is() { return 'id-button'; }
       static get properties() {
@@ -267,9 +269,9 @@
            */
           links: Array,
           /**
-           * Color variations for the button. Primary, Success, Warning, Danger
+           * Context variations for the button. [primary, success, warning, danger]
            */
-          color: {
+          context: {
             type: String,
             value: 'primary'
           },
@@ -290,21 +292,30 @@
             reflectToAttribute: true
           },
           /**
-           * Makes button full width of mobile
+           * Makes button full width on mobile
            */
           block: {
             type: Boolean,
             value: false,
             reflectToAttribute: true
           },
+          /**
+           * Rename the event for the button
+           */
           eventName: {
             type: String,
             value: 'button-click'
           },
+          /**
+           * Allows the button to be in a group. [left, right, center]
+           */
           btnGroup: {
             type: String,
             reflectToAttribute: true
           },
+          /**
+           * Set the button state to loading.
+           */
           loading: {
             type: Boolean,
             default: false,
@@ -315,7 +326,7 @@
 
       constructor() {
         super();
-        this.colors = {
+        this.contexts = {
           secondary: {
             '--border-color': '#ccc',
             '--background-color': '#fff',
@@ -370,8 +381,8 @@
 
       ready() {
         super.ready();
-        if (this.colors[this.color]) {
-          this.updateStyles(this.colors[this.color]);
+        if (this.contexts[this.context]) {
+          this.updateStyles(this.contexts[this.context]);
         }
       }
     }
